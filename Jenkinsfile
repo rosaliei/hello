@@ -40,5 +40,5 @@ pipeline {
     }
 }
 //feat
-//major
+//major1
 //feat
