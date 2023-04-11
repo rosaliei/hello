@@ -37,6 +37,8 @@ pipeline {
                             script: 'npm version major',
                             returnStdout: true
                         ).trim()
+                    } else if (commitMessage =~ /\[RESET VERSION\]/) {
+                        currentVersion = '0.0.0'
                     }
                     echo "Current Version: ${currentVersion}"
                 }
