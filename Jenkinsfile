@@ -2,6 +2,13 @@ pipeline {
     agent any
 
     stages {
+        
+        stage('Init') {
+            steps {
+                sh 'npm init -y'
+            }
+        }
+        
         stage('Hello') {
             steps {
                 script {
