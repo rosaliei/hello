@@ -19,7 +19,7 @@ pipeline {
                     ).trim()
                     if (commitMessage =~ /^feat:/) {
                         currentVersion = sh(
-                            script: 'npm version patch',
+                            script: 'npm version minor',
                             returnStdout: true
                         ).trim()
                     } else if (commitMessage =~ /^fix:/) {
