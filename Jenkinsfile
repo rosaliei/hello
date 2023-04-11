@@ -1,5 +1,9 @@
 pipeline {
     agent any
+    
+    parameters {
+        string(name: 'release', defaultValue: 'fix:', description: 'Version Description')
+    }
 
     stages {
         
@@ -13,10 +17,11 @@ pipeline {
             steps {
                 script {
                     def currentVersion = '0.0.0'
-                    def commitMessage = sh(
-                        script: 'git log -1 --pretty=%B',
-                        returnStdout: true
-                    ).trim()
+                    //def commitMessage = sh(
+                        //script: 'git log -1 --pretty=%B',
+                        //returnStdout: true
+                    //).trim()
+                    def commitMessage = ${params.release}
                     if (commitMessage =~ /^feat:/) {
                         currentVersion = sh(
                             script: 'npm version minor',
