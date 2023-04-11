@@ -2,7 +2,7 @@ pipeline {
     agent any
     
     parameters {
-        string(name: 'release', defaultValue: 'fix:', description: 'Version Description')
+        string(name: 'commitMessage', defaultValue: 'fix:', description: 'Version Description')
     }
 
     stages {
@@ -21,18 +21,18 @@ pipeline {
                         //script: 'git log -1 --pretty=%B',
                         //returnStdout: true
                     //).trim()
-                    def commitMessage = ${params.release}
-                    if (commitMessage =~ /^feat:/) {
+                    //def commitMessage = ${params.release}
+                    if (params.commitMessage =~ /^feat:/) {
                         currentVersion = sh(
                             script: 'npm version minor',
                             returnStdout: true
                         ).trim()
-                    } else if (commitMessage =~ /^fix:/) {
+                    } else if (params.commitMessage =~ /^fix:/) {
                         currentVersion = sh(
                             script: 'npm version patch',
                             returnStdout: true
                         ).trim()
-                    } else if (commitMessage =~ /^BREAKING CHANGE:/) {
+                    } else if (params.commitMessage =~ /^BREAKING CHANGE:/) {
                         currentVersion = sh(
                             script: 'npm version major',
                             returnStdout: true
