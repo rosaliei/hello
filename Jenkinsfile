@@ -1,3 +1,14 @@
+properties([
+  buildDiscarder(
+    logRotator(
+      artifactDaysToKeepStr: '',
+      artifactNumToKeepStr: '3',
+     daysToKeepStr: '1',
+      numToKeepStr: '3'
+    )
+  )
+])
+
 pipeline {
     agent any
     
